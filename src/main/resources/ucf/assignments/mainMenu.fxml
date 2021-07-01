@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: Teal;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.MenuController">
+   <children>
+      <Label alignment="CENTER" layoutX="129.0" layoutY="32.0" prefHeight="61.0" prefWidth="343.0" text="To-Do List Maker">
+         <font>
+            <Font name="System Bold" size="40.0" />
+         </font>
+      </Label>
+      <Button layoutX="227.0" layoutY="156.0" mnemonicParsing="false" onAction="#listMaker" text="Create a List">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="226.0" layoutY="224.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="137.0" text="View a List">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="226.0" layoutY="291.0" mnemonicParsing="false" text="Import a List">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

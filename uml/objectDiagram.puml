@@ -1,0 +1,49 @@
+@startuml
+
+ListHolder --|> TodoList
+TodoList --|> Task
+
+class ListHolder{
+    - List<todoList> Lists
+
+    + public listsToFile()
+    + public createList()
+    + public listsFromFile()
+}
+
+class TodoList{
+    String listTitle
+
+    - List<task> tasks
+
+    + public setTitle(String topic)
+    + public getTitle()
+
+    + public addTask()
+    + public removeTask()
+    + public displayTasks()
+    + public displayIncomplete()
+    + public displayComplete()
+    + public printToFile()
+    + public readFromFile()
+}
+
+class Task{
+    String taskTitle
+    String taskDescription
+    Date dueDate
+    boolean isDone
+
+    + public getName()
+    + public setName(String name)
+    + public getList()
+    + public setList()
+    + public getDescription()
+    + public setDescription()
+    + public getDate()
+    + public setDate()
+    + public isDone()
+    + public setDone()
+}
+
+@enduml
