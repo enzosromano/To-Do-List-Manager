@@ -27,6 +27,7 @@ public class MenuController {
         stage.show();
 
     }
+    //Leads to list control view
     public void listMenu(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("listMenu.fxml"));
         Parent root =  loader.load();
