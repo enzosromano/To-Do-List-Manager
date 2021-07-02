@@ -17,7 +17,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="227.0" layoutY="214.0" mnemonicParsing="false" text="Import a List">
+      <Button layoutX="227.0" layoutY="214.0" mnemonicParsing="false" onAction="#importList" text="Import a List">
          <font>
             <Font size="20.0" />
          </font>
