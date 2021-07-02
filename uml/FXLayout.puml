@@ -3,6 +3,8 @@
 MenuController --|> ListMenu
 ListMenu --|> ListMaker
 ListMenu --|> ExistingList
+ExistingList --|> TaskMaker
+ExistingList --|> TaskViewer
 
 class MenuController{
 
@@ -12,6 +14,7 @@ class MenuController{
 
     + public void mainMenu(ActionEvent event)
     + public void listMenu(ActionEvent event)
+    + public void importList(ActionEvent event)
 }
 
 class ListMenu{
@@ -49,6 +52,26 @@ class ExistingList{
     + public void makeList(ActionEvent event)
     + public void printList(ActionEvent event)
     + public void taskMaker(ActionEvent event)
+}
+
+class TaskMaker{
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+    + public void taskMaker(ActionEvent event)
+    + public void mainMenu(ActionEvent event)
+    + public void makeTask(ActionEvent event)
+}
+
+class TaskViewer{
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+    + public void mainMenu(ActionEvent event)
 }
 
 @enduml
