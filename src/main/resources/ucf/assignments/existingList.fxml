@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: Teal;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.ExistingListController">
+   <children>
+      <Label layoutX="225.0" layoutY="36.0" text="Edit List">
+         <font>
+            <Font name="System Bold" size="40.0" />
+         </font>
+      </Label>
+      <Button layoutX="241.0" layoutY="234.0" mnemonicParsing="false" onAction="#taskMaker" prefHeight="44.0" prefWidth="144.0" text="Make a task">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="243.0" layoutY="289.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="144.0" text="View a Task">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="241.0" layoutY="178.0" mnemonicParsing="false" onAction="#printList" prefHeight="44.0" prefWidth="144.0" text="Print the list">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <TextField fx:id="listName" layoutX="55.0" layoutY="125.0" prefHeight="44.0" prefWidth="165.0" promptText="Enter a List Name" />
+      <Button layoutX="524.0" layoutY="361.0" mnemonicParsing="false" onAction="#mainMenu" text="Home" />
+      <Button layoutX="241.0" layoutY="125.0" mnemonicParsing="false" onAction="#makeList" text="Make the List">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -7,16 +7,28 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.IOException;
 
-public class MenuController {
+public class ListMakerController {
 
+    public TextField newListName;
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+
+    public void listMaker(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("listMaker.fxml"));
+        Parent root =  loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     public void mainMenu(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("mainMenu.fxml"));
@@ -27,13 +39,13 @@ public class MenuController {
         stage.show();
 
     }
-    public void listMenu(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("listMenu.fxml"));
-        Parent root =  loader.load();
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+
+    public void makeList(ActionEvent event) {
+        //This command will be used when "Make the List" button is clicked
+        //Grab the users input from the text box and initialize a new list using
+        //the text box input to assign its name
+
+        System.out.println("This would make the list " + newListName);
     }
 
 }

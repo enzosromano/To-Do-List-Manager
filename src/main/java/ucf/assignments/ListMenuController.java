@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.io.IOException;
 
-public class ListController {
+public class ListMenuController {
 
     public TextField listName;
     private Stage stage;
@@ -30,8 +30,8 @@ public class ListController {
         stage.show();
     }
 
-    public void taskMaker(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("taskMaker.fxml"));
+    public void existingList(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("existingList.fxml"));
         Parent root =  loader.load();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -39,10 +39,15 @@ public class ListController {
         stage.show();
     }
 
-    public void assignName(ActionEvent event) {
 
-        String stuff = listName.getText();
-        System.out.println(stuff);
+    public void mainMenu(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("mainMenu.fxml"));
+        Parent root =  loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
     }
 
 }

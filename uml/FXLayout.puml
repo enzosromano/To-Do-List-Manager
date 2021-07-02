@@ -1,0 +1,54 @@
+@startuml
+
+MenuController --|> ListMenu
+ListMenu --|> ListMaker
+ListMenu --|> ExistingList
+
+class MenuController{
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+    + public void mainMenu(ActionEvent event)
+    + public void listMenu(ActionEvent event)
+}
+
+class ListMenu{
+
+    public TextField listName;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+    + public void listMaker(ActionEvent event)
+    + public void existingList(ActionEvent event)
+    + public void mainMenu(ActionEvent event)
+}
+
+class ListMaker{
+
+    public TextField newListName;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+    + public void listMaker(ActionEvent event)
+    + public void mainMenu(ActionEvent event)
+    + public void makeList(ActionEvent event)
+}
+
+class ExistingList{
+
+    public TextField listName;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+    + public void mainMenu(ActionEvent event)
+    + public void makeList(ActionEvent event)
+    + public void printList(ActionEvent event)
+    + public void taskMaker(ActionEvent event)
+}
+
+@enduml
