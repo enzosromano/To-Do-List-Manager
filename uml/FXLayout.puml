@@ -1,12 +1,12 @@
 @startuml
 
-MenuController --|> ListMenu
+Menu --|> ListMenu
 ListMenu --|> ListMaker
 ListMenu --|> ExistingList
 ExistingList --|> TaskMaker
 ExistingList --|> TaskViewer
 
-class MenuController{
+class Menu{
 
     private Stage stage;
     private Scene scene;

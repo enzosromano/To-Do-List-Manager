@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 class TodoList{
 
-    String listTitle;
+    //String listTitle;
 
-    private ArrayList<Task> tasks;
+    //List<Task> tasks;
 
     //Title stuff
     public void setTitle(String title){

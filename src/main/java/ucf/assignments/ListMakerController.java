@@ -50,7 +50,7 @@ public class ListMakerController {
         //Grab the users input from the text box and initialize a new list using
         //the text box input to assign its name
 
-        System.out.println("This would make the list " + newListName);
+        System.out.println("This would make the list " + newListName.getText());
     }
 
 }
