@@ -36,6 +36,6 @@
       <Button layoutX="522.0" layoutY="354.0" mnemonicParsing="false" onAction="#mainMenu" text="Home" />
       <TextField layoutX="37.0" layoutY="118.0" prefHeight="34.0" prefWidth="284.0" promptText="Enter task name" />
       <TextField layoutX="37.0" layoutY="178.0" prefHeight="34.0" prefWidth="284.0" promptText="Enter task description" />
-      <TextField layoutX="37.0" layoutY="235.0" prefHeight="34.0" prefWidth="284.0" promptText="Enter due date (DD-MM-YYYY)" />
+      <TextField layoutX="37.0" layoutY="235.0" prefHeight="34.0" prefWidth="284.0" promptText="Enter due date (YYYY-MM-DD)" />
    </children>
 </AnchorPane>
