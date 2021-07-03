@@ -25,4 +25,5 @@ test {
     useJUnitPlatform()
 }
 
+
 mainClassName = 'ucf.assignments.Main'
