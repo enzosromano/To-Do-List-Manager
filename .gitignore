@@ -3,12 +3,3 @@
 /build/
 /build/classes/java/main/
 /build/classes/java/test/
-/.idea/
-/uml/
-/gradle/
-/src/
-/.gitignore
-/build.gradle
-/gradlew
-/gradlew.bat
-/settings.gradle
