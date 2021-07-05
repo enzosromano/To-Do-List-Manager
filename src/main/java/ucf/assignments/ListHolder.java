@@ -9,32 +9,40 @@ import java.util.ArrayList;
 
 public class ListHolder {
 
-    /*ArrayList<TodoList> Lists;
+    //ArrayList<TodoList> Lists;
 
     public void listsToFile(){
         //Create or find a file path
 
-        //Iterate through all our lists in our ArrayList
-            //Print all list info
-            //Iterate through list items
-                //Print tasks out to file
+        //if Lists is not empty
+            //Iterate through all our lists in our ArrayList
+                //Print all list info
+                //Iterate through list items
+                    //Print tasks out to file
+        //else
+            //throw exception and print message to user
     }
-    public TodoList createList(){
-        //Get title information from the user to create a list
-        //and add it to the list of lists
-
-        //Once the list is created, return it so we can go within it and create some tasks
+    public TodoList createList(String listName){
+        //if listName != ""
+            //use listName to create a new list instance and set its title to listName
+            //Once the list is created, return it so we can go within it and create some tasks
+            return null; //placeholder list
+        //else
+            //throw exception
     }
     public void listsFromFile(){
 
         //Get the file path where list information is stored
         //Create a file reader
 
-        //Iterate through the lists and add them to our ListHolder
-            //Iterate through all the tasks within each TodoList and add them to the
-            //corresponding list that was created above
+        //if file can be read and isn't empty
+            //Iterate through the lists and add them to our ListHolder
+                //Iterate through all the tasks within each TodoList and add them to the
+                //corresponding list that was created above
+        //else
+            //throw exception and print message to user
 
 
-    }*/
+    }
 
 }
