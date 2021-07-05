@@ -16,40 +16,58 @@ class Task{
     boolean isDone;
 
     public String getName(){
-        //Return the variable taskTitle
-        //for pseudocode purposes im returning a literal
-        return "placeholder";
+        //if name != ""
+            return "placeholder";
+        //else
+            //throw an exception
     }
     public void setName(String name){
-        //Set the variable taskTitle to the string that we get passed in
+        //if name != ""
+            //set our name variable equal to the passed in "name"
+        //else
+            //throw an exception
     }
     public TodoList getList(){
-        //Get the value of listName and return it
-        //for pseudocode purposes im returning a literal
-        return null;
+        //if listName != ""
+            return null; //null is a placeholder
+        //else
+            //throw an exception
     }
-    public void setList(){
-        //Set the value of listName and return nothing
+    public void setList(TodoList list){
+        //if list != null
+            //set TodoList = list
+        //else
+            //throw an exception
     }
     public String getDescription(){
-        //Get the value of taskDescription and return it
-        //for pseudocode purposes im returning a literal
-        return "placeholder";
+        //if description != ""
+            return "placeholder";
+        //else
+            //throw an exception
     }
     public void setDescription(String descriptionEdit){
-        //Set the variable taskDescription to the string that we get passed in
+        //if name != ""
+            //set our description variable equal to the passed in "descriptionEdit"
+        //else
+            //throw an exception
     }
     public Date getDate(){
-        //Get the value of dueDate and return it
-        //Date is just a placeholder for pseudocode purposes currently
-        return new Date();
+        //if description != null
+            return new Date();
+        //else
+            //throw an exception
     }
     public void setDate(Date date){
-        //Set the value of dueDate to our read in date
+        //if date != null
+            //set our date variable equal to the passed in "date"
+        //else
+            //throw an exception
     }
     public boolean isDone(){
-        //Return the isDone boolean value (true or false)
-        //for psuedocode purposes im returning a literal
+        //if isDone == false
+            //return false;
+        //else
+            //return true;
         return true;
     }
     public void setDone(){
