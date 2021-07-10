@@ -2,7 +2,6 @@ package ucf.assignments;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.stage.FileChooser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -126,7 +125,11 @@ public class MenuMethods {
 
     }
 
-    public void printToJson() {
+    public boolean printToJson() {
+
+        if(TodoList.taskObserve == null){
+            return false;
+        }
 
         Path currentRelativePath = Paths.get("");
         String path = currentRelativePath.toAbsolutePath().toString();
@@ -141,6 +144,7 @@ public class MenuMethods {
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
+            return false;
         }
 
         JSONArray allTasks = new JSONArray();
@@ -165,7 +169,10 @@ public class MenuMethods {
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
+            return false;
         }
+
+        return true;
 
     }
 

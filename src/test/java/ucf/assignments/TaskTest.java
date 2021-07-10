@@ -1,54 +1,106 @@
 package ucf.assignments;
 
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TaskTest {
 
-    //Define a task here to be used below, probably empty
+    TaskMethods taskMethods = new TaskMethods();
 
     @Test
-    void testGetAndSetName(){
+    void setEditTaskTest(){
 
-        //Set a name for a task using setName
-        //Use getName in order to test if the title name was set correctly
-        //and if getName pulls the name correctly
+        TodoList.initializeList();
+        TodoList.listTitle = "TaskList";
+        Task toEdit = new Task("ToEdit", TodoList.listTitle,
+                "Empty description", "No due-date assigned", false);
+        TodoList.taskObserve.add(toEdit);
+
+        taskMethods.setEditTask(toEdit);
+
+        if(TodoList.taskObserve.contains(toEdit)){
+            fail();
+        }
+        assert(true);
 
     }
+
     @Test
-    void testGetAndSetList(){
+    void changeTaskNameTest(){
 
-        //Create a new task and using setList, assign it to a list
-        //Using that same task, use getList and check if it matches the name you expect
+        String newName = "EditedName";
+        TodoList.initializeList();
+        TodoList.listTitle = "TaskList";
+        Task toEdit = new Task("ToEdit", TodoList.listTitle,
+                "Empty description", "No due-date assigned", false);
+
+        taskMethods.setEditTask(toEdit);
+        Task compareTo = taskMethods.changeTaskName(newName);
+        if(!compareTo.getTaskTitle().equals(newName)){
+            fail();
+        }
+        assert(true);
 
     }
+
     @Test
-    void testGetAndSetDescription(){
+    void changeTaskDescriptionTest(){
 
-        //using our previously created task with no defined attributes
-        //use set description to set the tasks description
+        String newDescription = "EditedDescription";
+        TodoList.initializeList();
+        TodoList.listTitle = "TaskList";
+        Task toEdit = new Task("ToEdit", TodoList.listTitle,
+                "Empty description", "No due-date assigned", false);
 
-        //Using that same task, use getDescription to get the description and compare it to
-        //a hardcoded string you expect
+        taskMethods.setEditTask(toEdit);
+        Task compareTo = taskMethods.changeTaskDescription(newDescription);
+        if(!compareTo.getTaskDescription().equals(newDescription)){
+            fail();
+        }
+        assert(true);
 
     }
+
     @Test
-    void testGetAndSetDate(){
+    void changeTaskDateTest(){
 
-        //Using our previously created task with no defined attributes
-        //use setDate to set the tasks due date
+        LocalDate date = LocalDate.now();
+        String dateString = date.toString();
+        TodoList.initializeList();
+        TodoList.listTitle = "TaskList";
+        Task toEdit = new Task("ToEdit", TodoList.listTitle,
+                "Empty description", "No due-date assigned", false);
 
-        //Using that same task, use getDate to get the due date and compare it to
-        //a hardcoded date you expect
+        taskMethods.setEditTask(toEdit);
+        Task compareTo = taskMethods.changeTaskDate(date);
+        System.out.println(date);
+        System.out.println(compareTo.getDueDate());
+        if(!compareTo.getDueDate().equals(dateString)){
+            fail();
+        }
+        assert(true);
 
     }
+
     @Test
-    void testIsAndSetDone(){
+    void changeStatusTest(){
 
-        //Using our task defined above, isDone will default to false so check if its false using isDone
-        //Is that passes, use setDone to set isDone to true
-        //using isDone check if the done value is now true as you expected
+        TodoList.initializeList();
+        TodoList.listTitle = "TaskList";
+        Task toEdit = new Task("ToEdit", TodoList.listTitle,
+                "Empty description", "No due-date assigned", false);
+
+        taskMethods.setEditTask(toEdit);
+        Task compareTo = taskMethods.toggleStatus();
+        if(!compareTo.getIsDone()){
+            fail();
+        }
+        assert(true);
 
     }
+
 
 }

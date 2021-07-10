@@ -125,11 +125,6 @@ public class MenuController {
             textBox.setText("List not initialized yet!");
         }
 
-        /*if (TodoList.listTitle != null) {
-            String stuff = TodoList.taskObserve.remove(tasksTwo.getSelectionModel().getSelectedItem());
-        } else {
-            textBox.setText("List not initialized yet!");
-        }*/
     }
 
     public void deleteAllTasks() {
@@ -138,11 +133,6 @@ public class MenuController {
             textBox.setText("Nothing to delete! Try making a list first");
         }
 
-        /*try {
-            TodoList.taskObserve.clear();
-        } catch (NullPointerException n) {
-            textBox.setText("Nothing to delete! Try making a list first");
-        }*/
     }
 
     public void importList(){
@@ -164,19 +154,9 @@ public class MenuController {
 
 
     public void addToTableView(JSONArray itemList) {
-
         if(!methods.addToTableView(itemList)){
             textBox.setText("No items to add!");
         }
-
-        /*Boolean isDone;
-        for (JSONObject object : (Iterable<JSONObject>) itemList) {
-
-            isDone = object.get("isDone").equals("true");
-            TodoList.taskObserve.add(new Task(object.get("taskTitle").toString(), TodoList.listTitle,
-                    object.get("taskDescription").toString(), object.get("dueDate").toString(), isDone));
-        }
-        initialize();*/
     }
 
     public void toggleView(ActionEvent event) throws IOException {
@@ -204,37 +184,6 @@ public class MenuController {
         }
     }
 
-    /*public void displayComplete() {
-
-        ObservableList<Task> completeItems = FXCollections.observableArrayList();
-
-        if (TodoList.listTitle != null) {
-            for (int i = 0; i < TodoList.taskObserve.size(); i++) {
-                if (TodoList.taskObserve.get(i).getIsDone()) {
-                    completeItems.add(TodoList.taskObserve.get(i));
-                }
-            }
-            tasksTwo.setItems(completeItems);
-        } else {
-            textBox.setText("Cannot sort yet!");
-        }
-    }
-
-    public void displayIncomplete() {
-
-        ObservableList<Task> incompleteItems = FXCollections.observableArrayList();
-
-        if (TodoList.listTitle != null) {
-            for (int i = 0; i < TodoList.taskObserve.size(); i++) {
-                if (!TodoList.taskObserve.get(i).getIsDone()) {
-                    incompleteItems.add(TodoList.taskObserve.get(i));
-                }
-            }
-            tasksTwo.setItems(incompleteItems);
-        } else {
-            textBox.setText("Cannot sort yet!");
-        }
-    }*/
 
     public void displayAll() {
         if (TodoList.listTitle != null && !TodoList.taskObserve.isEmpty()) {
@@ -245,48 +194,9 @@ public class MenuController {
     }
 
     public void printToJson() {
-
-        methods.printToJson();
-
-        /*Path currentRelativePath = Paths.get("");
-        String path = currentRelativePath.toAbsolutePath().toString();
-
-        try {
-            File replacedOutput = new File(path + "\\" + "jsonOfList");
-            if (replacedOutput.createNewFile()) {
-                System.out.println("File created: " + replacedOutput.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+        if(!methods.printToJson()){
+            textBox.setText("Could not export list.");
         }
-
-        JSONArray allTasks = new JSONArray();
-        JSONObject toJson = new JSONObject();
-        for (int i = 0; i < TodoList.taskObserve.size(); i++) {
-            JSONObject currentTask = new JSONObject();
-            currentTask.put("taskTitle", TodoList.taskObserve.get(i).getTaskTitle());
-            currentTask.put("listName", TodoList.taskObserve.get(i).getListName());
-            currentTask.put("taskDescription", TodoList.taskObserve.get(i).getTaskDescription());
-            currentTask.put("dueDate", TodoList.taskObserve.get(i).getDueDate());
-            currentTask.put("isDone", TodoList.taskObserve.get(i).getIsDone().toString());
-            allTasks.add(currentTask);
-        }
-        toJson.put("tasks", allTasks);
-
-        String jsonString = toJson.toString();
-        try {
-            FileWriter myWriter = new FileWriter(path + "\\" + "jsonOfList");
-            myWriter.write(jsonString);
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }*/
-
     }
 
 }

@@ -29,6 +29,20 @@ public class TaskMakerController {
     public Text title;
     private Task changeTask;
 
+    TaskMethods methods = new TaskMethods();
+
+    public void mainMenu(ActionEvent event) throws IOException {
+
+        TodoList.taskObserve.add(changeTask);
+
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("mainMenu.fxml"));
+        Parent root =  loader.load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void setupMenu(){
 
         if(changeTask.getTaskTitle() != null){
@@ -60,28 +74,15 @@ public class TaskMakerController {
         }
     }
 
-
-    public void mainMenu(ActionEvent event) throws IOException {
-
-        TodoList.taskObserve.add(changeTask);
-
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("mainMenu.fxml"));
-        Parent root =  loader.load();
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
     public void setEditTask(Task task) {
-        changeTask = task;
-        TodoList.taskObserve.remove(task);
+        changeTask = methods.setEditTask(task);
         setupMenu();
     }
 
     public void changeTaskName(){
         String name = assignName.getText();
-        changeTask.setTaskTitle(name);
+        changeTask = methods.changeTaskName(name);
+
         assignName.clear();
         assignName.setPromptText("Confirmed");
         setupMenu();
@@ -94,7 +95,7 @@ public class TaskMakerController {
             assignDescription.setPromptText("Must be between 1-256 Characters");
         }
         else {
-            changeTask.setDescription(description);
+            changeTask = methods.changeTaskDescription(description);
             assignDescription.clear();
             assignDescription.setPromptText("Confirmed");
         }
@@ -104,13 +105,12 @@ public class TaskMakerController {
     public void changeTaskDate(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = datePicker.getValue();
-        String printDate = formatter.format(date);
-        changeTask.setDueDate(printDate);
+        changeTask = methods.changeTaskDate(date);
         setupMenu();
     }
 
     public void toggleStatus(){
-        changeTask.setIsDone(!changeTask.getIsDone());
+        changeTask = methods.toggleStatus();
         setupMenu();
     }
 
