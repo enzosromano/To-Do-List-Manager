@@ -1,7 +1,7 @@
 # To-Do List Maker Help
 _______________________________________________________________________________________________________________________
 
-##Main Menu
+## Main Menu
 
 When first running the program you are brought to the main menu page,
 This page has a table that will contain no content upon your first load.
@@ -46,7 +46,7 @@ On the main menu, some buttons can only be used once certain actions have been t
     - You can not sort any tasks using the "Complete/Incomplete/All" button until you have created a list
     using the "Create New List" button and populated it with at least one task
    
-##List Menu
+## List Menu
 (Found by clicking on the "Create New List" button on the Main Menu)
 
 The list menu contains nothing more than a text field, and two buttons ("Make a new List" and "Home")
@@ -56,7 +56,7 @@ The list menu contains nothing more than a text field, and two buttons ("Make a 
        and a message will appear telling you the restrictions of list titling
        
 
-##Task Menu
+## Task Menu
 This menu can only be reached if...
 
     - You have initialized a list
@@ -85,9 +85,9 @@ The home button on this page works differently than it does on the List Menu
 Clicking this button at any point will not delete any saved data, if you have entered input and interacted
 with any of the three buttons adjacent to text-fields above, the input will save.
 
-##Import/Export
+## Import/Export
 
-###Import
+### Import
 
     - Imported files **MUST** be of the file type json
     - Json files you are trying to import **MUST** have tasks listed under a json object labeled "tasks"
@@ -97,7 +97,7 @@ with any of the three buttons adjacent to text-fields above, the input will save
         obscurity in what exactly a user can try and use as an import file, so I chose to limit it accordingly
         - Importing a list will not intiialize a list or create a list name, it will only import its tasks
 
-###Export
+### Export
 
     - Lists will be exported to the directy that you are currently running the project from
     - Lists can be exported with 0 items in them, though im not sure why youd want that
