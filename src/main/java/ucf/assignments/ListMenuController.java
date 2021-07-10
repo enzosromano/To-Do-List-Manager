@@ -32,8 +32,12 @@ public class ListMenuController {
 
     public void createListFromInput(ActionEvent event) throws IOException {
 
-        TodoList.initializeList();
         String name = newListName.getText();
+        if(name.length() == 0){
+            newListName.setPromptText("Must be longer than one character");
+            return;
+        }
+        TodoList.initializeList();
         TodoList.setTitle(name);
 
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("mainMenu.fxml"));

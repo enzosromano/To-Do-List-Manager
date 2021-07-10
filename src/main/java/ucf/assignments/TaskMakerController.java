@@ -81,6 +81,10 @@ public class TaskMakerController {
 
     public void changeTaskName(){
         String name = assignName.getText();
+        if(name.length() ==0){
+            assignName.setPromptText("Name must be more than one character");
+            return;
+        }
         changeTask = methods.changeTaskName(name);
 
         assignName.clear();
