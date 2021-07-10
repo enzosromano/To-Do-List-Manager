@@ -39,6 +39,8 @@ public class MenuController {
     private Scene scene;
     private int viewCount = 0;
 
+    MenuMethods methods = new MenuMethods();
+
     public void initialize() {
 
         if (TodoList.taskObserve == null) {
@@ -84,16 +86,6 @@ public class MenuController {
         stage.show();
     }
 
-    public void makeTask() {
-        if (TodoList.listTitle != null) {
-            TodoList.taskObserve.add(new Task("Unnamed task", TodoList.listTitle,
-                    "Empty description", "No due-date assigned", false));
-            initialize();
-        } else {
-            textBox.setText("List not initialized yet!");
-        }
-    }
-
     public void editTask(ActionEvent event) {
 
         if (TodoList.listTitle != null) {
@@ -118,85 +110,93 @@ public class MenuController {
         }
     }
 
-    public void deleteTask() {
+    public void makeTask() {
 
-        if (TodoList.listTitle != null) {
-            TodoList.taskObserve.remove(tasksTwo.getSelectionModel().getSelectedItem());
-            initialize();
-        } else {
+        if(!methods.makeTask()){
             textBox.setText("List not initialized yet!");
         }
+
+    }
+
+    public void deleteTask() {
+
+        Task toDelete = tasksTwo.getSelectionModel().getSelectedItem();
+        if(!methods.deleteTask(toDelete)){
+            textBox.setText("List not initialized yet!");
+        }
+
+        /*if (TodoList.listTitle != null) {
+            String stuff = TodoList.taskObserve.remove(tasksTwo.getSelectionModel().getSelectedItem());
+        } else {
+            textBox.setText("List not initialized yet!");
+        }*/
     }
 
     public void deleteAllTasks() {
 
-        try {
-            TodoList.taskObserve.clear();
-            initialize();
-        } catch (NullPointerException n) {
+        if(!methods.deleteAllTasks()){
             textBox.setText("Nothing to delete! Try making a list first");
         }
+
+        /*try {
+            TodoList.taskObserve.clear();
+        } catch (NullPointerException n) {
+            textBox.setText("Nothing to delete! Try making a list first");
+        }*/
     }
 
     public void importList(){
 
-        if (TodoList.listTitle != null) {
-            FileChooser fileChooser = new FileChooser();
-            File selectedFile = fileChooser.showOpenDialog(null);
-
-            if (selectedFile != null) {
-                parseJson(selectedFile.getPath());
-            }
-        } else {
+        if(TodoList.listTitle == null){
             textBox.setText("List not initialized yet!");
+            return;
+        }
+
+        JSONArray toImport = methods.importList();
+
+        if(toImport != null){
+            addToTableView(toImport);
+        }
+        else{
+            textBox.setText("Invalid file for import!");
         }
     }
 
-    public void parseJson(String file) {
-
-        JSONParser parser = new JSONParser();
-        try {
-            Object obj = parser.parse(new FileReader(file));
-
-            JSONObject jsonObject = (JSONObject) obj;
-            JSONArray itemList = (JSONArray) jsonObject.get("tasks");
-
-            addToTableView(itemList);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
 
     public void addToTableView(JSONArray itemList) {
-        Boolean isDone;
+
+        if(!methods.addToTableView(itemList)){
+            textBox.setText("No items to add!");
+        }
+
+        /*Boolean isDone;
         for (JSONObject object : (Iterable<JSONObject>) itemList) {
 
             isDone = object.get("isDone").equals("true");
             TodoList.taskObserve.add(new Task(object.get("taskTitle").toString(), TodoList.listTitle,
                     object.get("taskDescription").toString(), object.get("dueDate").toString(), isDone));
         }
-        initialize();
+        initialize();*/
     }
 
     public void toggleView(ActionEvent event) throws IOException {
+
 
         if (TodoList.listTitle != null && !TodoList.taskObserve.isEmpty()) {
             if (viewCount == 3) {
                 viewCount = 0;
             }
 
-            System.out.println("Starting value: " + viewCount);
-
             if (viewCount == 0) {
-                displayAll();
+                initialize();
                 viewCount++;
             } else if (viewCount == 1) {
-                displayComplete();
+                tasksTwo.setItems(methods.displayComplete());
+                //displayComplete();
                 viewCount++;
             } else if (viewCount == 2) {
-                displayIncomplete();
+                tasksTwo.setItems(methods.displayIncomplete());
+                //displayIncomplete();
                 viewCount++;
             }
         } else {
@@ -204,7 +204,7 @@ public class MenuController {
         }
     }
 
-    public void displayComplete() {
+    /*public void displayComplete() {
 
         ObservableList<Task> completeItems = FXCollections.observableArrayList();
 
@@ -234,7 +234,7 @@ public class MenuController {
         } else {
             textBox.setText("Cannot sort yet!");
         }
-    }
+    }*/
 
     public void displayAll() {
         if (TodoList.listTitle != null && !TodoList.taskObserve.isEmpty()) {
@@ -246,7 +246,9 @@ public class MenuController {
 
     public void printToJson() {
 
-        Path currentRelativePath = Paths.get("");
+        methods.printToJson();
+
+        /*Path currentRelativePath = Paths.get("");
         String path = currentRelativePath.toAbsolutePath().toString();
 
         try {
@@ -283,7 +285,7 @@ public class MenuController {
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
-        }
+        }*/
 
     }
 
