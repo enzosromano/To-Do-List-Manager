@@ -20,6 +20,7 @@ public class ListMenuController {
     private Stage stage;
     private Scene scene;
 
+    //Function called by the home button to load the main menu view
     public void mainMenu(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("mainMenu.fxml"));
         Parent root =  loader.load();
@@ -30,10 +31,12 @@ public class ListMenuController {
 
     }
 
+    //Create and initialize a list from user input, called by the "Make new List" button
     public void createListFromInput(ActionEvent event) throws IOException {
 
         String name = newListName.getText();
         if(name.length() == 0){
+            //If the input for the name entered isn't long enough, don't initialize the list
             newListName.setPromptText("Must be longer than one character");
             return;
         }

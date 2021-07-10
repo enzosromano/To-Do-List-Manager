@@ -5,8 +5,6 @@
 
 package ucf.assignments;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -20,14 +18,9 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class MenuController {
 
@@ -41,6 +34,8 @@ public class MenuController {
 
     MenuMethods methods = new MenuMethods();
 
+    //Initialize is called whenever the "mainMenu.fxml" page is opened up
+    //Defines columns and sets them to our Table View
     public void initialize() {
 
         if (TodoList.taskObserve == null) {
@@ -76,7 +71,7 @@ public class MenuController {
 
     }
 
-    //Leads to list control view
+    //Function called by our Create List button to open our "listMenu.fxml"
     public void listMenu(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("listMenu.fxml"));
         Parent root = loader.load();
@@ -86,6 +81,7 @@ public class MenuController {
         stage.show();
     }
 
+    //Function called by our Task button to open our "taskMaker.fxml"
     public void editTask(ActionEvent event) {
 
         if (TodoList.listTitle != null) {
@@ -94,6 +90,7 @@ public class MenuController {
                 FXMLLoader passController = new FXMLLoader(getClass().getResource("taskMaker.fxml"));
                 Parent root = passController.load();
 
+                //Pass our selected task over into the next scene
                 TaskMakerController taskMaker = passController.getController();
                 taskMaker.setEditTask(selectedItem);
 
@@ -108,18 +105,23 @@ public class MenuController {
         } else {
             textBox.setText("List not initialized yet!");
         }
+
     }
 
+    //Creates a blank task using makeTask() from our MenuMethods class
     public void makeTask() {
 
+        //If it returns false our list has not been initialized
         if(!methods.makeTask()){
             textBox.setText("List not initialized yet!");
         }
 
     }
 
+    //Deletes a selected task using deleteTask() from our MenuMethods class
     public void deleteTask() {
 
+        //Get and pass our selected task that we want to delete through to our other class
         Task toDelete = tasksTwo.getSelectionModel().getSelectedItem();
         if(!methods.deleteTask(toDelete)){
             textBox.setText("List not initialized yet!");
@@ -127,6 +129,7 @@ public class MenuController {
 
     }
 
+    //Deletes all tasks in the list using deleteAllTasks() from our MenuMethods class
     public void deleteAllTasks() {
 
         if(!methods.deleteAllTasks()){
@@ -135,6 +138,7 @@ public class MenuController {
 
     }
 
+    //Calls our importList() function from our MenuMethods class
     public void importList(){
 
         if(TodoList.listTitle == null){
@@ -142,7 +146,11 @@ public class MenuController {
             return;
         }
 
-        JSONArray toImport = methods.importList();
+        FileChooser fileChooser = new FileChooser();
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        //The importList() function returns the JSONArray we need to add to our TodoList
+        JSONArray toImport = methods.importList(selectedFile);
 
         if(toImport != null){
             addToTableView(toImport);
@@ -152,31 +160,35 @@ public class MenuController {
         }
     }
 
-
+    //Calls our addToTableView() function in our MenuMethods lass
     public void addToTableView(JSONArray itemList) {
+
+        //if the boolean returned is false, we did not import any tasks
         if(!methods.addToTableView(itemList)){
             textBox.setText("No items to add!");
         }
+
     }
 
+    //Toggle view is used to control our Complete/Incomplete/All button
     public void toggleView(ActionEvent event) throws IOException {
 
-
+        //Since this button has toggle functionality, if we have reached our final state
+        //restart it back to the first
         if (TodoList.listTitle != null && !TodoList.taskObserve.isEmpty()) {
             if (viewCount == 3) {
                 viewCount = 0;
             }
 
             if (viewCount == 0) {
+                //Calls initialize to show all tasks in tableview
                 initialize();
                 viewCount++;
             } else if (viewCount == 1) {
                 tasksTwo.setItems(methods.displayComplete());
-                //displayComplete();
                 viewCount++;
             } else if (viewCount == 2) {
                 tasksTwo.setItems(methods.displayIncomplete());
-                //displayIncomplete();
                 viewCount++;
             }
         } else {
@@ -184,19 +196,14 @@ public class MenuController {
         }
     }
 
-
-    public void displayAll() {
-        if (TodoList.listTitle != null && !TodoList.taskObserve.isEmpty()) {
-            initialize();
-        } else {
-            textBox.setText("Cannot sort yet!");
-        }
-    }
-
+    //Calls our printToJson() function in our MenuMethods class
     public void printToJson() {
+
+        //if the boolean value returned is false, we failed at exporting our list
         if(!methods.printToJson()){
             textBox.setText("Could not export list.");
         }
+
     }
 
 }

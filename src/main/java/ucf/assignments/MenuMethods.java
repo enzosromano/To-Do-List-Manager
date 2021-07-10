@@ -16,26 +16,33 @@ import java.nio.file.Paths;
 
 public class MenuMethods {
 
-    private int viewCount = 0;
-
+    //Create a new task with placeholder values
     public boolean makeTask() {
+
+        //Check if our list is actually initialized before we try and add a task to it
         if (TodoList.listTitle != null) {
             TodoList.taskObserve.add(new Task("Unnamed task", TodoList.listTitle,
                     "Empty description", "No due-date assigned", false));
             return true;
         }
+        //return false if we could not add a task
         return false;
+
     }
 
+    //Delete a task that gets passed in from our TodoList
     public boolean deleteTask(Task task) {
 
         if (TodoList.listTitle != null) {
             TodoList.taskObserve.remove(task);
             return true;
         }
+        //return false if our list has not been initialized or we did not find the task
         return false;
+
     }
 
+    //Delete all the tasks in our current TodoList item
     public boolean deleteAllTasks() {
 
         try {
@@ -46,13 +53,12 @@ public class MenuMethods {
         return true;
     }
 
-    public JSONArray importList(){
+    //Import a list from a JSON file if it meets our criteria
+    public JSONArray importList(File selectedFile){
 
         if (TodoList.listTitle != null) {
-            FileChooser fileChooser = new FileChooser();
-            File selectedFile = fileChooser.showOpenDialog(null);
-
             if (selectedFile != null) {
+                //Call to parseJson function using our grabbed file
                 return parseJson(selectedFile.getPath());
             }
         }
@@ -61,6 +67,7 @@ public class MenuMethods {
 
     }
 
+    //Parses our json file for tasks
     public JSONArray parseJson(String file) {
 
         JSONParser parser = new JSONParser();
@@ -68,6 +75,7 @@ public class MenuMethods {
             Object obj = parser.parse(new FileReader(file));
 
             JSONObject jsonObject = (JSONObject) obj;
+            //Tasks must be stored within a JSON object of the value "tasks"
             JSONArray itemList = (JSONArray) jsonObject.get("tasks");
             return itemList;
 
@@ -79,13 +87,15 @@ public class MenuMethods {
 
     }
 
+    //Adds a JSON array of items to our Table View
     public boolean addToTableView(JSONArray itemList) {
 
+        //Nothing to add if we have no items in our array
         if(itemList.size() == 0){
             return false;
         }
 
-        Boolean isDone;
+        boolean isDone;
         for (JSONObject object : (Iterable<JSONObject>) itemList) {
 
             isDone = object.get("isDone").equals("true");
@@ -95,11 +105,13 @@ public class MenuMethods {
         return true;
     }
 
+    //Returns an array of only our completed items from our Todolist
     public ObservableList<Task> displayComplete() {
 
         ObservableList<Task> completeItems = FXCollections.observableArrayList();
 
         if (TodoList.listTitle != null) {
+            //Iterate through all elements and check if isDone is true
             for (int i = 0; i < TodoList.taskObserve.size(); i++) {
                 if (TodoList.taskObserve.get(i).getIsDone()) {
                     completeItems.add(TodoList.taskObserve.get(i));
@@ -110,11 +122,13 @@ public class MenuMethods {
         return completeItems;
     }
 
+    //Returns an array of only our Inomplete items from our Todolist
     public ObservableList<Task> displayIncomplete() {
 
         ObservableList<Task> incompleteItems = FXCollections.observableArrayList();
 
         if (TodoList.listTitle != null) {
+            //Iterate through all elements and check if isDone is false
             for (int i = 0; i < TodoList.taskObserve.size(); i++) {
                 if (!TodoList.taskObserve.get(i).getIsDone()) {
                     incompleteItems.add(TodoList.taskObserve.get(i));
@@ -125,12 +139,14 @@ public class MenuMethods {
 
     }
 
+    //Called on when we need to export a file, returns true if the file is created with no issues
     public boolean printToJson() {
 
         if(TodoList.taskObserve == null){
             return false;
         }
 
+        //Get our current directory path and put it in string format to use as a file path
         Path currentRelativePath = Paths.get("");
         String path = currentRelativePath.toAbsolutePath().toString();
 
@@ -147,9 +163,11 @@ public class MenuMethods {
             return false;
         }
 
+        //Create an array to store our tasks in and then an object to format it for our JSON output
         JSONArray allTasks = new JSONArray();
         JSONObject toJson = new JSONObject();
         for (int i = 0; i < TodoList.taskObserve.size(); i++) {
+            //Store each task in an abject so we can add it to our array of objects
             JSONObject currentTask = new JSONObject();
             currentTask.put("taskTitle", TodoList.taskObserve.get(i).getTaskTitle());
             currentTask.put("listName", TodoList.taskObserve.get(i).getListName());
@@ -160,6 +178,7 @@ public class MenuMethods {
         }
         toJson.put("tasks", allTasks);
 
+        //Put our output in string form for writing to the file
         String jsonString = toJson.toString();
         try {
             FileWriter myWriter = new FileWriter(path + "\\" + "jsonOfList");

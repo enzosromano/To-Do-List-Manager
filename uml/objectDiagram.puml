@@ -1,6 +1,6 @@
 @startuml
 
-TodoList --|> Task
+TodoList <|-- Task
 
 class TodoList{
     String listTitle

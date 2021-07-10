@@ -25,13 +25,10 @@ class Menu{
     + public void importList()
     + public void addToTableView(JSONArray itemList)
     + public void toggleView(ActionEvent event)
-    + public void displayAll()
     + public void printToJson()
 }
 
 class MenuMethods{
-
-    private int viewCount = 0;
 
     + public boolean makeTask()
     + public boolean deleteTask(Task task)
