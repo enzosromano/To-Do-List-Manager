@@ -15,10 +15,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+
+        TodoList list = new TodoList();
+
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("mainMenu.fxml"));
         Parent root =  loader.load();
         primaryStage.setTitle("To-Do List Maker");
-        primaryStage.setScene(new Scene(root, 550, 500));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 

@@ -5,73 +5,63 @@
 
 package ucf.assignments;
 
+import javafx.scene.control.CheckBox;
+
+import java.time.LocalDate;
 import java.util.Date;
 
-class Task{
+public class Task{
 
-    String taskTitle;
-    TodoList listName;
-    String taskDescription;
-    Date dueDate;
-    boolean isDone;
+    private String taskTitle;
+    private String listName;
+    private String taskDescription;
+    private String dueDate;
+    private Boolean isDone;
 
-    public String getName(){
-        //if name != ""
-            return "placeholder";
-        //else
-            //throw an exception
+    public Task(){
+        this.taskTitle = "";
+        this.listName = "";
+        this.taskDescription = "";
+        this.dueDate = "";
+        this.isDone = false;
     }
-    public void setName(String name){
-        //if name != ""
-            //set our name variable equal to the passed in "name"
-        //else
-            //throw an exception
+    public Task(String taskTitle, String listName, String taskDescription, String dueDate, Boolean isDone){
+        this.taskTitle = taskTitle;
+        this.listName = listName;
+        this.taskDescription = taskDescription;
+        this.dueDate = dueDate;
+        this.isDone = isDone;
     }
-    public TodoList getList(){
-        //if listName != ""
-            return null; //null is a placeholder
-        //else
-            //throw an exception
+
+    public String getTaskTitle() {
+        return taskTitle;
     }
-    public void setList(TodoList list){
-        //if list != null
-            //set TodoList = list
-        //else
-            //throw an exception
+    public void setTaskTitle(String name){
+        this.taskTitle = name;
     }
-    public String getDescription(){
-        //if description != ""
-            return "placeholder";
-        //else
-            //throw an exception
+    public String getListName(){
+        return listName;
+    }
+    public void setListName(String list){
+        this.listName = list;
+    }
+    public String getTaskDescription(){
+        return taskDescription;
     }
     public void setDescription(String descriptionEdit){
-        //if name != ""
-            //set our description variable equal to the passed in "descriptionEdit"
-        //else
-            //throw an exception
+        this.taskDescription = descriptionEdit;
     }
-    public Date getDate(){
-        //if description != null
-            return new Date();
-        //else
-            //throw an exception
+    public String getDueDate(){
+        return dueDate;
     }
-    public void setDate(Date date){
-        //if date != null
-            //set our date variable equal to the passed in "date"
-        //else
-            //throw an exception
+    public void setDueDate(String date){
+        this.dueDate = date;
     }
-    public boolean isDone(){
-        //if isDone == false
-            //return false;
-        //else
-            //return true;
-        return true;
+    public Boolean getIsDone(){
+        return isDone;
     }
-    public void setDone(){
-        //Set the boolean value isDone to true
+    public void setIsDone(Boolean done){
+        this.isDone = done;
     }
 
 }

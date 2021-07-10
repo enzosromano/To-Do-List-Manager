@@ -2,8 +2,10 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: Teal;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.ListMenuController">
    <children>
@@ -12,16 +14,17 @@
             <Font name="System Bold" size="40.0" />
          </font>
       </Label>
-      <Button layoutX="204.0" layoutY="212.0" mnemonicParsing="false" onAction="#existingList" prefHeight="44.0" prefWidth="196.0" text="Edit an Existing List">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
       <Button layoutX="524.0" layoutY="361.0" mnemonicParsing="false" onAction="#mainMenu" text="Home" />
-      <Button layoutX="204.0" layoutY="148.0" mnemonicParsing="false" onAction="#listMaker" prefHeight="44.0" prefWidth="196.0" text="Make a new List">
+      <Button layoutX="199.0" layoutY="273.0" mnemonicParsing="false" onAction="#createListFromInput" prefHeight="44.0" prefWidth="196.0" text="Make a new List">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
+      <TextField fx:id="newListName" alignment="CENTER" layoutX="117.0" layoutY="115.0" prefHeight="58.0" prefWidth="359.0" promptText="Enter the name of your new list" />
+      <Text layoutX="144.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Once you have entered the name of the list you want to create, click on &quot;Make a new List&quot; above" wrappingWidth="311.09765625">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
