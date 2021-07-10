@@ -1,77 +1,91 @@
 @startuml
 
 Menu --|> ListMenu
-ListMenu --|> ListMaker
-ListMenu --|> ExistingList
-ExistingList --|> TaskMaker
-ExistingList --|> TaskViewer
+Menu --|> TaskMaker
+Menu <|-- MenuMethods
+TaskMaker <|-- TaskMethods
 
 class Menu{
 
+    public Text textBox;
+    public Button taskButton;
+    public TableView<Task> tasksTwo;
     private Stage stage;
     private Scene scene;
-    private Parent root;
+    private int viewCount = 0;
 
-    + public void mainMenu(ActionEvent event)
+    MenuMethods methods = new MenuMethods();
+
+    + public void initialize()
     + public void listMenu(ActionEvent event)
-    + public void importList(ActionEvent event)
+    + public void editTask(ActionEvent event)
+    + public void makeTask()
+    + public void deleteTask()
+    + public void deleteAllTasks()
+    + public void importList()
+    + public void addToTableView(JSONArray itemList)
+    + public void toggleView(ActionEvent event)
+    + public void displayAll()
+    + public void printToJson()
+}
+
+class MenuMethods{
+
+    private int viewCount = 0;
+
+    + public boolean makeTask()
+    + public boolean deleteTask(Task task)
+    + public boolean deleteAllTasks()
+    + public JSONArray importList()
+    + public JSONArray parseJson(String file)
+    + public boolean addToTableView(JSONArray itemList)
+    + public ObservableList<Task> displayComplete()
+    + public ObservableList<Task> displayIncomplete()
+    + public boolean printToJson()
 }
 
 class ListMenu{
 
-    public TextField listName;
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-
-    + public void listMaker(ActionEvent event)
-    + public void existingList(ActionEvent event)
-    + public void mainMenu(ActionEvent event)
-}
-
-class ListMaker{
-
     public TextField newListName;
     private Stage stage;
     private Scene scene;
-    private Parent root;
-
-    + public void listMaker(ActionEvent event)
-    + public void mainMenu(ActionEvent event)
-    + public void makeList(ActionEvent event)
-}
-
-class ExistingList{
-
-    public TextField listName;
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
 
     + public void mainMenu(ActionEvent event)
-    + public void makeList(ActionEvent event)
-    + public void printList(ActionEvent event)
-    + public void taskMaker(ActionEvent event)
+    + public void createListFromInput(ActionEvent event)
 }
 
 class TaskMaker{
 
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    public TextField assignName;
+    public TextField assignDescription;
+    public DatePicker datePicker;
+    public Text completed;
+    public Text date;
+    public Text description;
+    public Text title;
+    private Task changeTask;
 
-    + public void taskMaker(ActionEvent event)
-    + public void mainMenu(ActionEvent event)
-    + public void makeTask(ActionEvent event)
-}
-
-class TaskViewer{
-
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    TaskMethods methods = new TaskMethods();
 
     + public void mainMenu(ActionEvent event)
+    + public void setupMenu()
+    + public void setEditTask(Task task)
+    + public void changeTaskName()
+    + public void changeTaskDescription()
+    + public void changeTaskDate()
+    + public void toggleStatus()
 }
+
+class TaskMethods{
+
+    private Task changeTask;
+
+    + public Task setEditTask(Task task)
+    + public Task changeTaskName(String editName)
+    + public Task changeTaskDescription(String editDescription)
+    + public Task changeTaskDate(LocalDate date)
+    + public Task toggleStatus()
+}
+
 
 @enduml

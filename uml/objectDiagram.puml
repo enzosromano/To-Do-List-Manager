@@ -1,49 +1,33 @@
 @startuml
 
-ListHolder --|> TodoList
 TodoList --|> Task
-
-class ListHolder{
-    - List<todoList> Lists
-
-    + public listsToFile()
-    + public createList()
-    + public listsFromFile()
-}
 
 class TodoList{
     String listTitle
+    ObservableList<Task> taskObserve;
 
-    - List<task> tasks
-
-    + public setTitle(String topic)
-    + public getTitle()
-
-    + public addTask()
-    + public removeTask()
-    + public displayTasks()
-    + public displayIncomplete()
-    + public displayComplete()
-    + public printToFile()
-    + public readFromFile()
+    + public void initializeList()
+    + public void setTitle(String title)
+    + public string getTitle()
 }
 
 class Task{
     String taskTitle
+    String listName
     String taskDescription
-    Date dueDate
-    boolean isDone
+    String dueDate
+    Boolean isDone
 
-    + public getName()
-    + public setName(String name)
-    + public getList()
-    + public setList()
-    + public getDescription()
-    + public setDescription()
-    + public getDate()
-    + public setDate()
-    + public isDone()
-    + public setDone()
+    + public String getTaskTitle()
+    + public void setTaskTitle(String name)
+    + public String getListName()
+    + public void setListName(String list)
+    + public String getTaskDescription()
+    + public void setDescription(String descriptionEdit)
+    + public String getDueDate()
+    + public void setDueDate(String date)
+    + public Boolean getIsDone()
+    + public void setIsDone(Boolean done)
 }
 
 @enduml
