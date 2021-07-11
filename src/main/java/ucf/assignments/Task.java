@@ -5,11 +5,6 @@
 
 package ucf.assignments;
 
-import javafx.scene.control.CheckBox;
-
-import java.time.LocalDate;
-import java.util.Date;
-
 public class Task{
 
     private String taskTitle;

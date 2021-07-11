@@ -1,15 +1,9 @@
 package ucf.assignments;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.junit.jupiter.api.Test;
-
 import java.io.File;
-import java.net.URL;
-import java.util.ArrayList;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class TodoListTest {
