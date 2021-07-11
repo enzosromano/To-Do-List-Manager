@@ -1,0 +1,8 @@
+{
+  "tasks" : [
+    {"taskTitle":  "Mow Lawn", "listName": "Listy List", "taskDescription":  "Do some stuff", "dueDate":  "2021-08-10", "isDone":  "false"},
+    {"taskTitle":  "Clean Room", "listName": "Listy List", "taskDescription":  "Do some stuff", "dueDate":  "2021-08-10", "isDone":  "false"},
+    {"taskTitle":  "Cook Dinner", "listName": "Listy List", "taskDescription":  "Do some stuff", "dueDate":  "2021-08-10", "isDone":  "false"},
+    {"taskTitle":  "Eat Dinner", "listName": "Listy List", "taskDescription":  "Do some stuff", "dueDate":  "2021-08-10", "isDone":  "false"}
+  ]
+}
