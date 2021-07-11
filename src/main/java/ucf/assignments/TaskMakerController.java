@@ -43,6 +43,7 @@ public class TaskMakerController {
         stage.show();
     }
 
+    //Lays out the interface that displays task information to users
     public void setupMenu(){
 
         if(changeTask.getTaskTitle() != null){
@@ -74,11 +75,13 @@ public class TaskMakerController {
         }
     }
 
+    //Identifies the task we want to edit and calls our menu setup function
     public void setEditTask(Task task) {
         changeTask = methods.setEditTask(task);
         setupMenu();
     }
 
+    //Passes our text field input to changeTaskName() in TaskMethods class
     public void changeTaskName(){
         String name = assignName.getText();
         if(name.length() ==0){
@@ -91,9 +94,12 @@ public class TaskMakerController {
         assignName.setPromptText("Confirmed");
         setupMenu();
     }
+
+    //Gets our text field input and passes it to changeTaskDescription in TaskMethods class
     public void changeTaskDescription(){
         String description = assignDescription.getText();
 
+        //Make sure use input follows our constraints of 1-256 characters
         if(description.length() < 1 || description.length() > 256){
             assignDescription.clear();
             assignDescription.setPromptText("Must be between 1-256 Characters");
@@ -106,6 +112,7 @@ public class TaskMakerController {
         setupMenu();
     }
 
+    //Gets user input from our DatePicker and passes it to our TaskMethods class
     public void changeTaskDate(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = datePicker.getValue();
@@ -113,6 +120,7 @@ public class TaskMakerController {
         setupMenu();
     }
 
+    //Changes the status of our task
     public void toggleStatus(){
         changeTask = methods.toggleStatus();
         setupMenu();
