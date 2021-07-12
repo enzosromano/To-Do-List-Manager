@@ -38,6 +38,7 @@ public class MenuController {
     //Defines columns and sets them to our Table View
     public void initialize() {
 
+        //If we haven't initialized our list, tell the user to make one
         if (TodoList.taskObserve == null) {
             textBox.setText("Please create a list to get started");
         } else {
@@ -66,6 +67,7 @@ public class MenuController {
         isDoneColumn.setMinWidth(100);
         isDoneColumn.setCellValueFactory(new PropertyValueFactory<>("isDone"));
 
+        //Set items equal to our list of tasks and add the columns to our table view
         tasksTwo.setItems(TodoList.taskObserve);
         tasksTwo.getColumns().addAll(nameColumn, listColumn, descriptionColumn, dateColumn, isDoneColumn);
 
@@ -84,6 +86,7 @@ public class MenuController {
     //Function called by our Task button to open our "taskMaker.fxml"
     public void editTask(ActionEvent event) {
 
+        //If we have intiialized our list, allow to user to edit its tasks
         if (TodoList.listTitle != null) {
             Task selectedItem = tasksTwo.getSelectionModel().getSelectedItem();
             try {
@@ -103,6 +106,7 @@ public class MenuController {
                 e.printStackTrace();
             }
         } else {
+            //If our list is not initialized, let the user know
             textBox.setText("List not initialized yet!");
         }
 
@@ -132,6 +136,7 @@ public class MenuController {
     //Deletes all tasks in the list using deleteAllTasks() from our MenuMethods class
     public void deleteAllTasks() {
 
+        //If we don't have tasks to delete, output a message to the user
         if(!methods.deleteAllTasks()){
             textBox.setText("Nothing to delete! Try making a list first");
         }
@@ -146,6 +151,7 @@ public class MenuController {
             return;
         }
 
+        //Create a file chooser object for the user to navigate to their import file within
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(null);
 
@@ -185,9 +191,11 @@ public class MenuController {
                 initialize();
                 viewCount++;
             } else if (viewCount == 1) {
+                //Calls our method to only show complete tasks
                 tasksTwo.setItems(methods.displayComplete());
                 viewCount++;
             } else if (viewCount == 2) {
+                //Calls our method to only show incomplete tasks
                 tasksTwo.setItems(methods.displayIncomplete());
                 viewCount++;
             }

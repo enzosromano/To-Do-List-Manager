@@ -40,6 +40,7 @@ public class ListMenuController {
             newListName.setPromptText("Must be longer than one character");
             return;
         }
+        //If the input meets our constraints, initialize the list and set its name to the users input
         TodoList.initializeList();
         TodoList.setTitle(name);
 
